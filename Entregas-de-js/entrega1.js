@@ -1,6 +1,7 @@
 class ProductManager {
   constructor() {
     this.products = [];
+    this.id = 1;
   }
 
   getProducts() {
@@ -13,21 +14,30 @@ class ProductManager {
     }
 
     const newProduct = {
-      id: this.generateProductId(),
+      id: this.id,
       ...product,
     };
 
     this.products.push(newProduct);
+    this.id++;
 
     return newProduct.id;
   }
 
-  generateProductId() {}
+  getProductById(id) {
+    const product = this.products.find((p) => p.id === id);
+
+    if (!product) {
+      throw new Error(`No se encontró ningún producto con el id ${id}`);
+    }
+
+    return product;
+  }
 }
 
 const productManager = new ProductManager();
 
-productManager.addProduct({
+const productId = productManager.addProduct({
   title: "Manzana",
   description: "Es una manzana roja",
   price: 200,
@@ -36,6 +46,6 @@ productManager.addProduct({
   stock: 25,
 });
 
-const products = productManager.getProducts();
+const product = productManager.getProductById(productId);
 
-console.log(products);
+console.log(product);
