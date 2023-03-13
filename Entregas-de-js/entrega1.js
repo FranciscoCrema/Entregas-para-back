@@ -46,6 +46,17 @@ const productId = productManager.addProduct({
   stock: 25,
 });
 
+const productId2 = productManager.addProduct({
+  title: "Banana",
+  description: "Es una manzana roja",
+  price: 200,
+  thumbnail: "Sin imagen",
+  code: "abc124",
+  stock: 25,
+});
+
 const product = productManager.getProductById(productId);
 
-console.log(product);
+const product2 = productManager.getProductById(productId2);
+
+console.log(product, product2);
